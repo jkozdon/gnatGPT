@@ -1,0 +1,19 @@
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+.python-version
+
+# Data (too large for git)
+data/
+
+# Model checkpoints
+*.pt
+*.pth
+checkpoints/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
