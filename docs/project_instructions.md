@@ -43,13 +43,14 @@ Shakespeare (~1MB plain text, character-level tokenization). File: `data/shakesp
 gnatGPT/
 ├── data/
 │   └── shakespeare.txt
-├── tokenizer.py       # char-level encode/decode
-├── dataset.py         # Dataset + DataLoader
-├── attention.py       # single-head and multi-head attention
-├── model.py           # full GPT model (blocks + LM head)
-├── train.py           # training loop
-├── generate.py        # sampling / generation
-└── config.py          # hyperparameters as a dataclass
+└── src/
+    ├── tokenizer.py       # char-level encode/decode
+    ├── dataset.py         # Dataset + DataLoader
+    ├── attention.py       # single-head and multi-head attention
+    ├── model.py           # full GPT model (blocks + LM head)
+    ├── train.py           # training loop
+    ├── generate.py        # sampling / generation
+    └── config.py          # hyperparameters as a dataclass
 ```
 
 ### Design decisions made
