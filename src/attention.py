@@ -16,7 +16,7 @@ class CausalSelfAttention(nn.Module):
         # causal mask: upper triangle is True (will be filled with -inf)
         T = cfg.context_len
         mask = torch.triu(torch.ones(T, T), diagonal=1).bool()
-        self.register_buffer('mask', mask)
+        self.register_buffer("mask", mask)
 
     def forward(self, x):
         # x: (B, T, d_model)
@@ -27,8 +27,8 @@ class CausalSelfAttention(nn.Module):
         V = self.W_v(x)  # (B, T, d_k)
 
         scores = Q @ K.transpose(-2, -1) / math.sqrt(self.d_k)  # (B, T, T)
-        scores = scores.masked_fill(self.mask[:T, :T], float('-inf'))
-        weights = F.softmax(scores, dim=-1)                   # (B, T, T)
+        scores = scores.masked_fill(self.mask[:T, :T], float("-inf"))
+        weights = F.softmax(scores, dim=-1)  # (B, T, T)
 
         out = weights @ V  # (B, T, d_k)
         return out
