@@ -63,3 +63,6 @@ with torch.no_grad():
 
 print("lm_head weight std:", model.lm_head.weight.std().item())
 print("tok_emb weight std:", model.embedding.tok_emb.weight.std().item())
+
+for name, p in model.named_parameters():
+    print(f"{name:40s}  {str(list(p.shape)):20s}  {p.numel()}")
