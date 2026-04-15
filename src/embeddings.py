@@ -26,5 +26,6 @@ class Embeddings(nn.Module):
     def forward(self, x):
         # x: (B, T) token ids
         # return: (B, T, d_model)
+        _, T = x.shape
         tok = self.tok_emb(x)  # (B, T, d_model)
-        return tok + self.pe  # broadcast add (T, d_model) + (B, T, d_model)
+        return tok + self.pe[:T, :]  # broadcast add (T, d_model) + (B, T, d_model)

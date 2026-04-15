@@ -14,10 +14,11 @@ class GnatGPT(nn.Module):
             [TransformerBlock(cfg) for _ in range(cfg.n_layers)]
         )
         self.norm = nn.LayerNorm(cfg.d_model)
-        self.lm_head = nn.Linear(cfg.model, cfg.vocab_size, bias=False)
+        self.lm_head = nn.Linear(cfg.d_model, cfg.vocab_size, bias=False)
 
         # Weight tying: share token embedding <-> LM head
         self.lm_head.weight = self.embedding.tok_emb.weight
+        nn.init.normal_(self.embedding.tok_emb.weight, mean=0.0, std=0.02)
 
     def forward(self, idx, targets=None):
         # idx: (B, T) token ids
