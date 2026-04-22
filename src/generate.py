@@ -42,12 +42,19 @@ def generate(
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    checkpoint_path = sys.argv[1] if len(sys.argv) > 1 else "checkpoints/ckpt_04999.pt"
-    prompt = sys.argv[2] if len(sys.argv) > 2 else "ROMEO:"
+    parser = argparse.ArgumentParser(
+        description="Generate text from a GnatGPT checkpoint"
+    )
+    parser.add_argument("checkpoint", help="Path to checkpoint file")
+    parser.add_argument("prompt", help="Text prompt to continue")
+    parser.add_argument("--max-new-tokens", type=int, default=300)
+    parser.add_argument("--temperature", type=float, default=0.8)
+    parser.add_argument("--top-k", type=int, default=40)
+    args = parser.parse_args()
 
-    ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+    ckpt = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
     cfg = ckpt["cfg"]
     device = torch.device(cfg.device)
 
@@ -61,10 +68,10 @@ if __name__ == "__main__":
     output = generate(
         model,
         tokenizer,
-        prompt,
-        max_new_tokens=300,
-        temperature=0.8,
-        top_k=40,
+        args.prompt,
+        max_new_tokens=args.max_new_tokens,
+        temperature=args.temperature,
+        top_k=args.top_k,
         device=device,
         context_len=cfg.context_len,
     )
