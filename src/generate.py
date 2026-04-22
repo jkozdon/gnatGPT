@@ -52,11 +52,18 @@ if __name__ == "__main__":
     parser.add_argument("--max-new-tokens", type=int, default=300)
     parser.add_argument("--temperature", type=float, default=0.8)
     parser.add_argument("--top-k", type=int, default=40)
+    parser.add_argument(
+        "--device",
+        type=str,
+        default="default",
+        help="Device to run on: cpu, mps, cuda, or default",
+    )
     args = parser.parse_args()
 
     ckpt = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
     cfg = ckpt["cfg"]
-    device = torch.device(cfg.device)
+    device = cfg.device if args.device == "default" else args.device
+    device = torch.device(device)
 
     with open("data/shakespeare.txt", "r") as f:
         text = f.read()
