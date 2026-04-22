@@ -61,10 +61,14 @@ gnatGPT/
 
 ## Current status
 Update this section as sessions are completed:
-- [ ] Session 1: Environment + PyTorch orientation
-- [ ] Session 2: Tokenizer + dataset pipeline
-- [ ] Session 3: Embeddings + causal self-attention
-- [ ] Session 4: Multi-head attention + FFN + block
-- [ ] Session 5: Full model + forward pass
-- [ ] Session 6: Training loop
-- [ ] Session 7: First training run + generation
+- [X] Session 1: Environment + PyTorch orientation
+- [X] Session 2: Tokenizer + dataset pipeline
+- [X] Session 3: Embeddings + causal self-attention
+- [X] Session 4: Multi-head attention + FFN + block
+- [X] Session 5: Full model + forward pass
+- [X] Session 6: Training loop
+- [X] Session 7: First training run + generation
+- [ ] Session 8: Scaling experiments
+- [ ] Session 9: Diagnostics + instrumentation
+- [ ] Session 10: KV-cache
+- [ ] Session 11: RoPE

@@ -11,7 +11,11 @@
 | 5 | Full model + forward pass | `model.py`, loss check, param count | 45–60 min |
 | 6 | Training loop | `train.py`, AdamW, LR schedule, grad clipping | 60 min |
 | 7 | First training run + generation | `generate.py`, checkpointing, sampling | 60 min |
-| 8+ | Extensions | BPE, KV-cache, GPU, RoPE | open-ended |
+| 8 | Scaling experiments | vary d_model, n_layers, d_ff; compare param counts and val loss | 60–90 min |
+| 9 | Diagnostics + instrumentation | grad norm logging, loss curves, per-layer stats | 45–60 min |
+| 10 | KV-cache | cached generation in `generate.py`, O(T) inference | 60–75 min |
+| 11 | RoPE | replace sinusoidal PE in `embeddings.py`, rotary math | 60–75 min |
+| 12+ | Extensions | BPE tokenizer, top-p sampling, Flash Attention | open-ended |
 
 ---
 
